@@ -29,7 +29,7 @@ def get_user_expenses(id: int, db: Session=Depends(get_db)):
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e))
     
 @router.get('/totals/{id}')
-def get_user_expenses(id: int, db: Session=Depends(get_db)):
+def get_user_total_expenses(id: int, db: Session=Depends(get_db)):
     try:
         return db.query(User).filter(User.id==id).options(selectinload(User.expenses)).all()
     except Exception as e:
